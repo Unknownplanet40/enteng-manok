@@ -10,4 +10,14 @@ export class ManokNiAsisController {
     async createmanok(@Body() data: Partial<Lorenzo>): Promise<Lorenzo> {
         return this.ManokSerive.createData(data);
     }
+
+    @Get('')
+    async readManok(): Promise<Lorenzo[]> {
+        return this.ManokSerive.readData();
+    }
+
+    @Get(':id')
+    async readManokByID(@Param('id') id: number): Promise<Lorenzo> {
+        return this.ManokSerive.readDataByID(id);
+    }
 }
