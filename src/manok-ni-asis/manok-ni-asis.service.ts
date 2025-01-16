@@ -14,4 +14,16 @@ export class ManokNiAsisService {
         const NewData = this.studentRepository.create(data);
         return this.studentRepository.save(data);
     }
+
+    async readData(): Promise<Lorenzo[]> {
+        return this.studentRepository.find();
+    }
+
+    async readDataByID(id: number): Promise<Lorenzo> {
+        const returnData = await this.studentRepository.findOneBy({ id });
+        if (!returnData) {
+            throw new NotFoundException(`ID ${id} not found`);
+        }
+        return returnData;
+    }
 }
